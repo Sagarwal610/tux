@@ -1,0 +1,61 @@
+file permissions 
+suid ,sgid give priveleges of owner , group  respectively when file is executed .
+It is denoted by s .
+
+to set it 
+  chmod u+s filename  or chmod 4755 //set suid  
+  chmod g+s filename  or chmod 2755 //set sgid 
+
+diff between s and S
+if file is executable and suid is set then small s else S 
+
+sticky bit 
+to set it chmod o+t or chmod 1755 
+
+Sticky Bit is mainly used on folders in  to avoid deletion of a folder and its 
+content by other users though they having write permissions on the folder contents.
+If Sticky bit is enabled on a folder, the folder contents are deleted by only owner who created them and the root user
+
+
+hardlink 
+to create 
+ln filename linkname 
+
+both filename and linkname are linked to same inode .
+so even filename is moved , deleted or renamed , linkname is valid 
+an inode exist as long as long as a link to it exist 
+so for deleting file we have to delete all the links to it .
+
+hardlink refers to same inode so they can be used within a filesystem
+
+
+softlink
+
+to create 
+ln -s filename linkname
+linkname is linked to different inode 
+linkname points to filename 
+when filename is deleted ,renamed or moved , linkname becomes unusable
+
+on executing ls -l softlinks are represented as
+ linkname > filename 
+
+Advantage of hardlink
+The main advantage of hard links is that, compared to soft links, there is no size or speed penalty.
+Soft links are an extra layer of indirection on top of normal file access; the kernel has to dereference the link when you open the file,
+and this takes a small amount of time. The link also takes a small amount of space on the disk, 
+to hold the text of the link. These penalties do not exist with hard links because they are built into the very structure of the filesystem. 
+  
+http://unix.stackexchange.com/questions/20670/why-do-hard-links-exist
+
+in unix . and .. are real entries . actually they are hardlinks .
+even root has both . and .. entry and they point to same inode .
+to view inode ls-i
+
+inodes do not contain file names, only other file metadata.
+
+
+files are listed as  
+numerals first 
+uppercase
+lowercase
