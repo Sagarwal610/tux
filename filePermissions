@@ -59,3 +59,26 @@ files are listed as
 numerals first 
 uppercase
 lowercase
+
+
+
+ umask()  sets  the calling process's file mode creation mask (umask) to
+       mask & 0777 (i.e., only the file permission bits of mask are used), and
+       returns the previous value of the mask.
+
+
+Special Execute 
+
+
+X - This is a slightly more restrictive version of "x".  
+It applies execute permissions to directories in all cases,
+and to files only if at least one execute permission bit is already set.
+It is typically used with the "+" operator and the "-R" option,
+to give group and/or other access to a large directory tree, without setting execute permissions on normal (non-executable) files (e.g., text files). 
+For example, "chmod -R go+rx bigdir" would set read and execute permissions on every file (including text files) and directory in the bigdir directory, 
+recursively, for group and other.  The command "chmod -R go+rX bigdir" would set read and execute permissions on every directory, 
+and would set group and other read and execute permissions on files that were already executable by the owner.
+
+
+
+
